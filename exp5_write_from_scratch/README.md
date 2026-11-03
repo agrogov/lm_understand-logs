@@ -64,6 +64,7 @@ runs/<game>/                 one run per game: breakout, seaquest, asterix
                              largest weight per tensor, token usage
 networks/<game>/hand.npz     the network Astra wrote, as read from reply/answer.md
 eval/minatar_eval.json       the 1,000-episode scores of the written networks and of the PPO networks
+code/score.py                reads a reply's edits block into a network and scores it on MinAtar (see below)
 LICENSE-MinAtar              GPL-3.0 license text (see below)
 ```
 
@@ -81,6 +82,26 @@ scored; reading `reply/answer.md` again gives exactly the same weights.
 with input index `(row * 10 + column) * 6 + channel` (rows 0 top to 9 bottom), and the logits are for the actions
 0 no-op, 1 left, 2 up, 3 right, 4 down, 5 fire. Which MinAtar channels go into each of the 6 channels is written in
 each prompt (`message.txt`, "THE INPUT").
+
+**Rescoring.** `code/score.py` reads a reply the way the prompt describes (last edits block, statements in order,
+unreadable statements skipped) and scores a network with the protocol in the prompt (MinAtar 1.0.15, sticky actions
+0.1, sampled actions, at most 10,000 steps, 1,000 episodes). It needs `numpy` and `minatar==1.0.15`.
+
+```
+python code/score.py breakout runs/breakout/reply/answer.md --save breakout.npz
+python code/score.py breakout networks/breakout/hand.npz
+```
+
+Reading the three replies gives `networks/<game>/hand.npz` exactly (same float32 values, same statement counts as
+`apply.json`). Scoring the released networks with seed 0 gives:
+
+| Game | `eval/minatar_eval.json` | `code/score.py` |
+|---|---|---|
+| Breakout | 517.4 ± 7.4 | 502.8 ± 7.7 |
+| Seaquest | 53.1 ± 1.4 | 52.6 ± 1.4 |
+| Asterix | 53.2 ± 1.0 | 52.4 ± 1.0 |
+
+The differences are within episode-to-episode noise (different random streams for the game and the action sampling).
 
 ## License of the MinAtar source in the prompts
 
