@@ -1,19 +1,100 @@
-# Native Linux RTX 4090 benchmark
+# Native Linux RTX 4090 and RTX 5090 benchmarks
 
 Host: `root@192.168.31.52` (`nuc-13`), Linux x86-64, approximately 59 GiB RAM.
 The image is built **on the remote Docker daemon**, with the repository's
 `Dockerfile`, CUDA 13.0.2, `uv venv /opt/venv`, and hash-locked dependencies.
 All Python inference runs inside that container. No local Docker build is used.
 
-## Completed results: 2026-11-04
+## Comparison of measured configurations
 
-**Use this remote Linux RTX 4090 for the experiment.** The tested four-sequence
-configuration projects **123.3 generation hours (5.1 days)** for the recorded
+Aggregate output tokens/s for four sequences at a 32,768-new-token cap, including
+prefill; generation-only projections use the same recorded token workload.
+
+| Setup | Base tokens/s | Edited tokens/s | Projected generation time |
+|---|---:|---:|---:|
+| M4 Max / MLX | 421.8 | 287.5 | 278.2 h / 11.6 days |
+| RTX 4090 / MacCUDA | 312.7 | 341.1 | 310.1 h / 12.9 days |
+| RTX 4090 / Linux CUDA | 967.6 | 637.2 | 123.3 h / 5.1 days |
+| RTX 5090 / Linux CUDA, CPU-limited compiled | 975.9 | 863.5 | 107.5 h / 4.5 days |
+
+The completed 5090 run used a four-CPU quota, two math threads, one compilation
+worker, and the host's 575 W limit. It is the fastest completed configuration
+by this workload projection, about 12.8% less generation time than the 4090.
+These are observed runner results with different sampled lengths and occupancy, not hardware limits
+or end-to-end experiment durations.
+
+## RTX 5090: completed CPU-limited benchmark
+
+**Completed: all eight timing cases across both checkpoints.**
+Both containers exited and the GPU returned to 2 MiB usage. Compact results:
+[CPU-limited 5090 results](remote-benchmark-5090-cpu-limited-results.json).
+
+| Checkpoint | Sequences | Output cap | Actual output tokens | Seconds | Tokens/s |
+|---|---:|---:|---:|---:|---:|
+| Base | 1 | 2,048 | 2,048 | 3.560 | 575.4 |
+| Base | 4 | 4,096 | 14,597 | 10.179 | 1,434.1 |
+| Base | 8 | 4,096 | 32,768 | 9.441 | 3,470.8 |
+| Base | 4 | 32,768 | 73,657 | 75.472 | 975.9 |
+| Edited | 1 | 2,048 | 2,048 | 3.610 | 567.3 |
+| Edited | 4 | 4,096 | 16,384 | 10.381 | 1,578.3 |
+| Edited | 8 | 4,096 | 30,877 | 9.514 | 3,245.4 |
+| Edited | 4 | 32,768 | 61,455 | 71.166 | 863.5 |
+
+The recorded workload projects to **64.56 base + 42.90 edited = 107.46 hours**
+(4.48 days). This excludes teacher forcing, grading, editor time and startup.
+Base long-case output lengths were `[5812,32768,2309,32768]`; edited lengths
+were `[4788,19538,4361,32768]`. Different EOS/occupancy means these rates do
+not isolate the CPU-limit effect or intrinsic hardware speed.
+
+Resource telemetry: container CPU median **98.26%** and peak **223.84%**
+(100% is one logical CPU), peak container RAM **5.075 GiB**, whole-host CPU
+idle median **94%**, minimum **81%**, no observed swap-in/out, peak GPU memory
+**28,125 MiB**. Container samples begin partway through base startup; host/GPU
+samples cover the launcher run.
+
+The benchmark uses the full compiled case list with these CPU resources:
+Docker `--cpus=4`, affinity
+`--cpuset-cpus=4-7` (four distinct physical cores on this host), two OpenMP,
+MKL, OpenBLAS, NumExpr and Rayon threads, disabled tokenizer parallelism,
+and one build/Inductor compilation worker. Docker quota and affinity were
+verified with `docker inspect`. The GPU power limit was 575 W. Results are
+under `results-5090-cpu-limited/`.
+The launcher now defaults to four CPUs, two math threads, one compilation worker;
+affinity is optional via `WSP_CPUSET` and must match the host topology.
+
+Host `vmstat` logs and container CPU/RAM statistics accompany GPU telemetry.
+Docker CPU percent counts 100% as one logical CPU, so the quota permits up to
+400%; it does not mean four of the host's eight physical cores are always busy.
+CPU limits can change throughput, so any completed numbers must be labeled
+separately from the original 4090 configuration.
+
+Reproduce the successful configuration on this host with its existing remote image:
+
+```bash
+WSP_IMAGE=qwen35-reproduction:20261104-5090 \
+WSP_GPU=GPU-748da0db-f83b-2085-15a3-f726534efa44 WSP_EXPECTED_GPU=5090 \
+WSP_CPU_LIMIT=4 WSP_CPUSET=4-7 WSP_CPU_THREADS=2 WSP_COMPILE_THREADS=1 \
+WSP_RESULTS_DIR=/root/qwen35-benchmark-20261104/results-5090-cpu-limited-new \
+bash /root/qwen35-benchmark-20261104/run_remote_benchmark.sh
+```
+
+The image was built on remote Docker as `qwen35-reproduction:20261104-5090`,
+ID `sha256:50e1d394e1aff89dbac695d20183fa70320e5ccc07d5c4056a8dcd41078da986`.
+Inference uses `enforce_eager=False`, torch compilation, CUDA graphs and BF16,
+with the same package versions, prompts, seeds, sampling and case list as the
+4090 benchmark. Select the card with `WSP_GPU` and `WSP_EXPECTED_GPU=5090`.
+
+See the [VRAM allocation check](VRAM_AUDIT.md) and
+[Blackwell target verification](BLACKWELL_AUDIT.md) for environment details.
+
+## RTX 4090: completed results, 2026-11-04
+
+The tested four-sequence configuration projects **123.3 generation hours (5.1 days)** for the recorded
 core workload. The corresponding MLX projection is **278.2 hours (11.6 days)**;
 the MacCUDA eGPU projection is **310.1 hours (12.9 days)**. That is about **2.26×
 the throughput of the measured MLX configuration** for this weighted workload.
 These compare complete implementations with differing sampled output lengths;
-they do not isolate hardware speed. No RTX 5090 timing was measured.
+they do not isolate hardware speed. The 5090 results are reported separately above.
 
 | Checkpoint | Sequences | Output cap/sequence | Actual output tokens | Wall incl. prefill | Aggregate tokens/s |
 |---|---:|---:|---:|---:|---:|

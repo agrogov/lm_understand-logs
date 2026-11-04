@@ -48,12 +48,20 @@ def main():
             workloads[label]['reference_cuda_generation_hours'] = ref['native_cuda_generation_hours']
     result = {'date':'2026-11-04','host':'root@192.168.31.52', 'metadata':metadata,
               'image_id':json.loads((a.results/'image-inspect.json').read_text())[0]['Id'],
-              'source_sha256':{name:hashlib.sha256((HERE/name).read_bytes()).hexdigest()
+              'local_source_sha256':{name:hashlib.sha256((HERE/name).read_bytes()).hexdigest()
                                for name in ['Dockerfile','benchmark_cuda.py','requirements.lock']},
               'cases':cases,'long_rates':rates,'workloads':workloads,
               'limitations':'Generation-only projection, one long batch per checkpoint; RNG/output lengths differ across backends; not an end-to-end experiment'}
     if reference:
         result['reference_cuda_gpu'] = reference['metadata']['base']['gpu']
+    run_config = a.results/'run-config.txt'
+    if run_config.exists():
+        result['launch_configuration'] = dict(line.split('=', 1)
+            for line in run_config.read_text().splitlines() if '=' in line)
+    image_sources = a.results/'image-source-sha256.txt'
+    if image_sources.exists():
+        result['image_source_sha256'] = {Path(file).name:digest
+            for digest,file in (line.split() for line in image_sources.read_text().splitlines() if line.strip())}
     a.out.write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps({'rates':rates,'core':workloads['discovery_plus_math_gsm']},indent=2))
 

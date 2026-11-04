@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-04",
+  "host": "root@192.168.31.52",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "visible_devices": "GPU-748da0db-f83b-2085-15a3-f726534efa44",
+  "image_id": "sha256:50e1d394e1aff89dbac695d20183fa70320e5ccc07d5c4056a8dcd41078da986",
+  "completed": false,
+  "status": "User confirmed whole-host freeze during eager smoke initialization; no timed case completed",
+  "expected_cases": [
+    [
+      1,
+      128
+    ],
+    [
+      4,
+      128
+    ],
+    [
+      8,
+      128
+    ]
+  ],
+  "eager": true,
+  "torch_compile_enabled": false,
+  "cuda_graphs_enabled": false,
+  "cuda_module_loading": "LAZY",
+  "power_limit_watts": 575,
+  "results": [],
+  "full_workload_generation_hours": null,
+  "last_received_phase": "After model load (1.43 GiB) and KV-layout setup; before any BENCH_RESULT",
+  "root_cause": "Unestablished; disabling graphs and torch compilation did not resolve the failure",
+  "remote_evidence": "/root/qwen35-benchmark-20261104/results-5090-eager-smoke2/",
+  "evidence_note": "Raw eager log and telemetry recovered after reboot into remote-results-5090-eager-smoke2/; they confirm enforce_eager=True and disabled torch compilation/CUDA graphs."
+}

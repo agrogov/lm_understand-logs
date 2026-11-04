@@ -1,0 +1,212 @@
+{
+  "date": "2026-11-04",
+  "host": "root@192.168.31.52",
+  "completed": false,
+  "status": "Base benchmark completed during one attempt; edited benchmark incomplete. Three user-confirmed host freezes during matched compiled initialization. GPU retries stopped.",
+  "image_id": "sha256:50e1d394e1aff89dbac695d20183fa70320e5ccc07d5c4056a8dcd41078da986",
+  "base_metadata": {
+    "versions": {
+      "vllm": "0.33.0",
+      "torch": "2.14.0",
+      "transformers": "5.20.2"
+    },
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "model": "/data/base-hf",
+    "visible_devices": "GPU-748da0db-f83b-2085-15a3-f726534efa44",
+    "max_model_len": 34816,
+    "weights_dtype": "bfloat16",
+    "kv_cache_dtype": "auto",
+    "sampling": {
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95,
+      "presence_penalty": 1.5
+    },
+    "eager": false,
+    "memory_fraction": 0.85,
+    "weights_sha256": {
+      "model.safetensors-00001-of-00001.safetensors": "04b1c301231dd422b8860db31311ab2721511346a32cb1e079c4c4e5f1fe4696"
+    },
+    "prompt_sha256": [
+      "06ad5c9f66a1a0062dd9a3dd24a84aab82d42b99cbf512aede8c7d4a5fa3288a",
+      "6d2caad8d8b0b602795986df589dd9e12b81f0368bbfd7b55410febca71a7a03",
+      "4e74338b5794153f8ba221d69a529b58dda67234f6b9bd2bb1f4e91cd80714b9",
+      "9b439bf3cc83c828996498a592a34dc5ac2f8a45547d054a37ae7d468bb7ea00",
+      "41463ea01f152e4584bf25f24f72e19cef9b7c254e27cbaba5d7d4c166bb4357",
+      "7cd1db7b9ba406f7f1eaa9074059372caa788c71d2e4fd0d539c285febc9fbb2",
+      "ad85e4eb93ed559eb7a02a434c5b5e9bf83d6878871cf144e581145d9d2162be",
+      "5628bf6f44ab5b495af6e75a22e8312e94c1b547a870a82d1c4900746a40c836"
+    ],
+    "model_and_engine_startup_seconds": 129.46598638700002,
+    "completed": true
+  },
+  "base_cases": [
+    {
+      "batch": 1,
+      "max_new_tokens": 2048,
+      "output_tokens": 2048,
+      "wall_seconds_including_prefill": 3.386468594000007,
+      "aggregate_output_tps_including_prefill": 604.7597794435638,
+      "sequences": [
+        {
+          "slot": 0,
+          "prompt_tokens": 100,
+          "output_tokens": 2048,
+          "finish_reason": "length"
+        }
+      ]
+    },
+    {
+      "batch": 4,
+      "max_new_tokens": 4096,
+      "output_tokens": 16384,
+      "wall_seconds_including_prefill": 9.783654150000018,
+      "aggregate_output_tps_including_prefill": 1674.6299234218095,
+      "sequences": [
+        {
+          "slot": 0,
+          "prompt_tokens": 100,
+          "output_tokens": 4096,
+          "finish_reason": "length"
+        },
+        {
+          "slot": 1,
+          "prompt_tokens": 63,
+          "output_tokens": 4096,
+          "finish_reason": "length"
+        },
+        {
+          "slot": 2,
+          "prompt_tokens": 82,
+          "output_tokens": 4096,
+          "finish_reason": "length"
+        },
+        {
+          "slot": 3,
+          "prompt_tokens": 80,
+          "output_tokens": 4096,
+          "finish_reason": "length"
+        }
+      ]
+    },
+    {
+      "batch": 8,
+      "max_new_tokens": 4096,
+      "output_tokens": 32768,
+      "wall_seconds_including_prefill": 8.930200549000006,
+      "aggregate_output_tps_including_prefill": 3669.3464855802513,
+      "sequences": [
+        {
+          "slot": 0,
+          "prompt_tokens": 100,
+          "output_tokens": 4096,
+          "finish_reason": "length"
+        },
+        {
+          "slot": 1,
+          "prompt_tokens": 63,
+          "output_tokens": 4096,
+          "finish_reason": "length"
+        },
+        {
+          "slot": 2,
+          "prompt_tokens": 82,
+          "output_tokens": 4096,
+          "finish_reason": "length"
+        },
+        {
+          "slot": 3,
+          "prompt_tokens": 80,
+          "output_tokens": 4096,
+          "finish_reason": "length"
+        },
+        {
+          "slot": 4,
+          "prompt_tokens": 109,
+          "output_tokens": 4096,
+          "finish_reason": "length"
+        },
+        {
+          "slot": 5,
+          "prompt_tokens": 136,
+          "output_tokens": 4096,
+          "finish_reason": "length"
+        },
+        {
+          "slot": 6,
+          "prompt_tokens": 75,
+          "output_tokens": 4096,
+          "finish_reason": "length"
+        },
+        {
+          "slot": 7,
+          "prompt_tokens": 109,
+          "output_tokens": 4096,
+          "finish_reason": "length"
+        }
+      ]
+    },
+    {
+      "batch": 4,
+      "max_new_tokens": 32768,
+      "output_tokens": 103467,
+      "wall_seconds_including_prefill": 77.58978277200004,
+      "aggregate_output_tps_including_prefill": 1333.5132062947123,
+      "sequences": [
+        {
+          "slot": 0,
+          "prompt_tokens": 100,
+          "output_tokens": 32768,
+          "finish_reason": "length"
+        },
+        {
+          "slot": 1,
+          "prompt_tokens": 63,
+          "output_tokens": 32768,
+          "finish_reason": "length"
+        },
+        {
+          "slot": 2,
+          "prompt_tokens": 82,
+          "output_tokens": 5163,
+          "finish_reason": "stop"
+        },
+        {
+          "slot": 3,
+          "prompt_tokens": 80,
+          "output_tokens": 32768,
+          "finish_reason": "length"
+        }
+      ]
+    }
+  ],
+  "edited": {
+    "completed": false,
+    "results": []
+  },
+  "full_workload_generation_hours": null,
+  "base_long_tps": 1333.5132062947123,
+  "reference_4090_base_long_tps": 967.6078037487597,
+  "base_long_speed_ratio": 1.3781546625898857,
+  "power_limit_watts_during_completed_base_run": 460,
+  "attempts": [
+    {
+      "directory": "results-5090",
+      "power_limit_watts": 575,
+      "outcome": "Host froze during first base graph capture; manually rebooted"
+    },
+    {
+      "directory": "results-5090-retry",
+      "power_limit_watts": 460,
+      "outcome": "All base cases completed; host froze during edited graph capture; manually rebooted"
+    },
+    {
+      "directory": "results-5090-full-rerun",
+      "power_limit_watts": 575,
+      "outcome": "Fresh complete benchmark requested; host froze during first base graph capture; no timing case received"
+    }
+  ],
+  "eager_smoke": "Interrupted at user request; no eager results included",
+  "cause": "Undetermined; graph capture is the last observed phase, not a proven root cause",
+  "evidence": "Raw completed base results, image/source hashes, logs and telemetry retained in ignored remote-results-5090-retry/; earlier failure evidence in remote-results-5090/"
+}
