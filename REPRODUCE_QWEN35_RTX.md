@@ -164,13 +164,20 @@ a hardware speed limit.
 The **remote Linux RTX 4090 at `192.168.31.52` has now been tested** with the
 full pinned Docker/uv image, built on that host. It measured **967.6 base /
 637.2 edited aggregate tokens/s** in the four-sequence 32K-cap cases, projecting
-**123.3 generation hours (5.1 days)** for the same recorded workload. **Use that
-remote 4090 for the current reproduction.** Both checkpoint checksums match.
-Only the 4090 was exposed to the benchmark; the RTX 5090 remains unmeasured.
+**123.3 generation hours (5.1 days)** for the same recorded workload. Both checkpoint checksums match.
+The **CPU-limited compiled 5090 run completed all eight cases** using a
+four-CPU Docker quota, affinity to CPUs 4–7, two math threads, one compilation
+worker, with the existing 575 W GPU limit and the same inference parameters.
+Its long cases measured **975.9 base / 863.5 edited tokens/s**, projecting
+**107.5 generation hours (4.5 days)**. This is the fastest completed configuration
+for the recorded workload; use these CPU limits when choosing the 5090.
+Host CPU idle time had a 94% median, GPU memory peaked at 28,125 MiB, and both
+containers exited normally.
 See [native Linux results, environment and remote rerun commands](reproduction/qwen35/REMOTE_BENCHMARK.md).
 This is one batch per checkpoint, with different output lengths across engines;
 teacher forcing, grading and editor time are additional. The earlier 100-hour
-scenario was an assumption; the measured native-CUDA point estimate is 123 hours.
+scenario was an assumption; the measured native-CUDA point estimates are
+123.3 hours on the 4090 and 107.5 hours on the CPU-limited 5090.
 
 The [native macOS environment](reproduction/macos/README.md) uses its own locked
 `uv venv`, not this CUDA image. Read the [MacCUDA / RTX 4090 applicability note](reproduction/macos/MACUDA.md)
