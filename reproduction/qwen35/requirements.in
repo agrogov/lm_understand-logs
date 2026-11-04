@@ -1,0 +1,13 @@
+# Versions used by the public checkpoint re-run; resolve transitives in the image.
+vllm==0.33.0
+transformers==5.20.2
+torch==2.14.0
+math-verify==0.9.0
+numpy
+scipy
+datasets
+huggingface-hub
+safetensors
+accelerate
+sentencepiece
+protobuf
