@@ -141,7 +141,7 @@ Source: [public checkpoint and independent rerun](https://huggingface.co/RikiyaT
 [local final run notes](exp8_math/runs/p50c/work_notes/notes.md),
 [evaluation protocol](exp8_math/README.md).
 
-### Native Mac measurements (added 2026-11-04)
+### Measured Mac and remote Linux configurations (2026-11-04)
 
 The M4 Max / 36 GiB machine has now run real BF16 base and hash-verified edited
 models through MLX, including generation at the full 32,768-token cap. The
@@ -159,9 +159,18 @@ Its four-sequence rates were **312.7 base / 341.1 edited tokens/s**, projecting
 **278.2 hours (11.6 days)** on MLX. With these implementations, prefer MLX for
 bulk work on the Mac. See [eGPU measurements, caveats and rerun commands](reproduction/macuda-engine/BENCHMARK.md).
 The comparison includes different sampled outputs and EOS occupancy; it is not
-a hardware speed limit. Native Linux RTX 5090/4090 speeds remain unmeasured.
-For the complete CUDA reproduction, use the Linux 5090 environment below and
-measure it with section 5 before assigning a runtime.
+a hardware speed limit.
+
+The **remote Linux RTX 4090 at `192.168.31.52` has now been tested** with the
+full pinned Docker/uv image, built on that host. It measured **967.6 base /
+637.2 edited aggregate tokens/s** in the four-sequence 32K-cap cases, projecting
+**123.3 generation hours (5.1 days)** for the same recorded workload. **Use that
+remote 4090 for the current reproduction.** Both checkpoint checksums match.
+Only the 4090 was exposed to the benchmark; the RTX 5090 remains unmeasured.
+See [native Linux results, environment and remote rerun commands](reproduction/qwen35/REMOTE_BENCHMARK.md).
+This is one batch per checkpoint, with different output lengths across engines;
+teacher forcing, grading and editor time are additional. The earlier 100-hour
+scenario was an assumption; the measured native-CUDA point estimate is 123 hours.
 
 The [native macOS environment](reproduction/macos/README.md) uses its own locked
 `uv venv`, not this CUDA image. Read the [MacCUDA / RTX 4090 applicability note](reproduction/macos/MACUDA.md)

@@ -21,6 +21,13 @@ checkpoints: 312.7 base / 341.1 edited aggregate tokens/s, projecting 310.1
 generation hours versus 278.2 hours on MLX for the recorded workload. Full
 protocol and long-context numerical/accuracy validation remain open.
 
+**Native Linux follow-up:** the same experiment checkpoints were subsequently
+benchmarked on the remote RTX 4090 using the full Docker/uv image built there.
+The measured four-sequence rates project **123.3 generation hours (5.1 days)**,
+versus 278.2 hours on MLX and 310.1 hours on this MacCUDA runner. Prefer the
+remote Linux 4090 for the current reproduction. See
+[native Linux measurements](../qwen35/REMOTE_BENCHMARK.md).
+
 ## Is the GPU used only for inference?
 
 Yes: the experiment has no gradient descent or optimizer. Its GPU workloads

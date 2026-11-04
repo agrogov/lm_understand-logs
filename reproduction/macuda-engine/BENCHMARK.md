@@ -17,12 +17,14 @@ generation-time projection: **310.1 hours (12.9 days)** versus **278.2 hours
 one long batch per checkpoint, not evidence that the M4 Max hardware is
 intrinsically faster than an RTX 4090.
 
-For the complete original CUDA reproduction, the **Linux RTX 5090 with the
-Docker/uv environment** is the practical choice: it follows the prepared
-vLLM/Transformers workflow without integrating a custom Mac backend. Neither
-native Linux 5090 nor native Linux 4090 has been benchmarked here, so no runtime
-is assigned to either. Use section 5 of the main guide to measure that system.
-The eGPU remains useful for native-engine development and diagnostic readback.
+**Later native Linux follow-up:** the remote RTX 4090 has now run both
+checkpoints in the full pinned Docker/uv environment, built on the remote host.
+It measured **967.6 base / 637.2 edited tokens/s**, projecting **123.3 generation
+hours (5.1 days)**. Prefer that remote 4090 for the current reproduction; the
+MLX preference above applies when choosing between the two tested Mac backends.
+See [native Linux results and rerun instructions](../qwen35/REMOTE_BENCHMARK.md).
+The 5090 remains unmeasured. The eGPU remains useful for native-engine development
+and diagnostic readback.
 
 All rates below are aggregate generated tokens/s, including prompt prefill.
 

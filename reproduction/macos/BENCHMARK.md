@@ -115,6 +115,9 @@ with experiment sampling: **312.7 base / 341.1 edited aggregate tokens/s**.
 Using the same recorded token counts projects **310.1 hours** on that MacCUDA
 runner, versus **278.2 hours** here. Prefer MLX for the current measured Mac
 workload; differing RNG/output lengths and fixed-batch occupancy limit the
-comparison. Native Linux NVIDIA throughput remains unmeasured. See also
+comparison. A later [native Linux RTX 4090 test](../qwen35/REMOTE_BENCHMARK.md),
+using the full Docker/uv image built remotely, measured **967.6 base / 637.2
+edited tokens/s**, projecting **123.3 hours (5.1 days)**. Prefer that remote
+4090 over either tested Mac backend for the current reproduction. See also
 [4090 activation/numerical validation](../macuda-engine/HARDWARE_TEST.md).
 See [environment](README.md) and [MacCUDA applicability](MACUDA.md).
