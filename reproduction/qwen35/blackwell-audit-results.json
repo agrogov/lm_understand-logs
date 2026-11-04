@@ -1,0 +1,177 @@
+{
+  "date": "2026-11-04",
+  "host": "root@192.168.31.52",
+  "image_id": "sha256:50e1d394e1aff89dbac695d20183fa70320e5ccc07d5c4056a8dcd41078da986",
+  "audit_mode": "CPU-only runc, GPU devices not exposed, network disabled, image filesystem read-only",
+  "cuda_initialized": false,
+  "versions": {
+    "torch": "2.14.0",
+    "vllm": "0.33.0",
+    "flashinfer-python": "0.7.2.post1",
+    "triton": "3.8.0"
+  },
+  "torch_cuda": "13.0",
+  "torch_compiled_arch_flags": "sm_75 sm_80 sm_86 sm_90 sm_100 sm_120",
+  "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Aug_20_01:58:59_PM_PDT_2025\nCuda compilation tools, release 13.0, V13.0.88\nBuild cuda_13.0.r13.0/compiler.36424714_0",
+  "nvcc_supported_targets": [
+    "sm_75",
+    "sm_80",
+    "sm_86",
+    "sm_87",
+    "sm_88",
+    "sm_89",
+    "sm_90",
+    "sm_100",
+    "sm_110",
+    "sm_103",
+    "sm_120",
+    "sm_121"
+  ],
+  "libraries": [
+    {
+      "file": "/opt/venv/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so",
+      "native_cubin_architectures": [
+        "sm_100",
+        "sm_100a",
+        "sm_103",
+        "sm_120",
+        "sm_120a",
+        "sm_121a",
+        "sm_75",
+        "sm_80",
+        "sm_86",
+        "sm_89",
+        "sm_90",
+        "sm_90a"
+      ],
+      "ptx_architectures": []
+    },
+    {
+      "file": "/opt/venv/lib/python3.12/site-packages/torch/lib/libtorch_cuda_linalg.so",
+      "native_cubin_architectures": [
+        "sm_100",
+        "sm_120",
+        "sm_80",
+        "sm_86",
+        "sm_90"
+      ],
+      "ptx_architectures": []
+    },
+    {
+      "file": "/opt/venv/lib/python3.12/site-packages/vllm/_C_stable_libtorch.abi3.so",
+      "native_cubin_architectures": [
+        "sm_100",
+        "sm_120",
+        "sm_75",
+        "sm_80",
+        "sm_86",
+        "sm_89",
+        "sm_90",
+        "sm_90a"
+      ],
+      "ptx_architectures": [
+        "sm_80",
+        "sm_89",
+        "sm_90"
+      ]
+    },
+    {
+      "file": "/opt/venv/lib/python3.12/site-packages/vllm/_deepselect_C.abi3.so",
+      "native_cubin_architectures": [
+        "sm_100"
+      ],
+      "ptx_architectures": []
+    },
+    {
+      "file": "/opt/venv/lib/python3.12/site-packages/vllm/_flashkda_C.abi3.so",
+      "native_cubin_architectures": [
+        "sm_100",
+        "sm_120",
+        "sm_90a"
+      ],
+      "ptx_architectures": []
+    },
+    {
+      "file": "/opt/venv/lib/python3.12/site-packages/vllm/_flashmla_C.abi3.so",
+      "native_cubin_architectures": [
+        "sm_100",
+        "sm_90a"
+      ],
+      "ptx_architectures": []
+    },
+    {
+      "file": "/opt/venv/lib/python3.12/site-packages/vllm/_flashmla_extension_C.abi3.so",
+      "native_cubin_architectures": [
+        "sm_100",
+        "sm_90a"
+      ],
+      "ptx_architectures": []
+    },
+    {
+      "file": "/opt/venv/lib/python3.12/site-packages/vllm/_moe_C_stable_libtorch.abi3.so",
+      "native_cubin_architectures": [
+        "sm_100",
+        "sm_120",
+        "sm_75",
+        "sm_80",
+        "sm_86",
+        "sm_89",
+        "sm_90"
+      ],
+      "ptx_architectures": [
+        "sm_80"
+      ]
+    },
+    {
+      "file": "/opt/venv/lib/python3.12/site-packages/vllm/_qutlass_C.abi3.so",
+      "native_cubin_architectures": [
+        "sm_100"
+      ],
+      "ptx_architectures": []
+    },
+    {
+      "file": "/opt/venv/lib/python3.12/site-packages/vllm/cumem_allocator.abi3.so",
+      "native_cubin_architectures": [],
+      "ptx_architectures": []
+    },
+    {
+      "file": "/opt/venv/lib/python3.12/site-packages/vllm/fs_io_C.abi3.so",
+      "native_cubin_architectures": [],
+      "ptx_architectures": []
+    },
+    {
+      "file": "/opt/venv/lib/python3.12/site-packages/vllm/spinloop.abi3.so",
+      "native_cubin_architectures": [],
+      "ptx_architectures": []
+    },
+    {
+      "file": "/opt/venv/lib/python3.12/site-packages/vllm/third_party/deep_gemm/_C_extension.abi3.so",
+      "native_cubin_architectures": [],
+      "ptx_architectures": []
+    },
+    {
+      "file": "/opt/venv/lib/python3.12/site-packages/vllm/vllm_flash_attn/_vllm_fa2_C.abi3.so",
+      "native_cubin_architectures": [
+        "sm_80"
+      ],
+      "ptx_architectures": [
+        "sm_80"
+      ]
+    },
+    {
+      "file": "/opt/venv/lib/python3.12/site-packages/vllm/vllm_flash_attn/_vllm_fa3_C.abi3.so",
+      "native_cubin_architectures": [
+        "sm_90a"
+      ],
+      "ptx_architectures": []
+    }
+  ],
+  "jit_metadata_architecture_counts": {
+    "120": 123
+  },
+  "jit_ptx_target_counts": {
+    "sm_120a": 123
+  },
+  "conclusion": "Inspected core PyTorch/vLLM libraries contain native sm_120 code; retained JIT artifacts target architecture 120/sm_120a. No blanket Blackwell-target omission found. FlashAttention 2 uses sm_80 PTX forward compatibility.",
+  "limitations": "Library target lists do not prove coverage or correctness of every kernel. FlashInfer-generated code outside the retained cache, driver behavior, hardware stability and numerical parity remain unvalidated. Freeze root cause unknown."
+}
