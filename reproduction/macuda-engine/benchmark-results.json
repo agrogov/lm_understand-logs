@@ -1,0 +1,392 @@
+{
+  "date": "2026-11-04",
+  "hardware": "RTX 4090 AD102, x4 PCIe Gen3 via MacCUDA on M4 Max 36 GiB",
+  "basis": "Original recorded generated-token counts divided by measured fixed-batch rates",
+  "excluded": "Teacher forcing, grading, editor decisions, checkpoint IO, retries and idle time",
+  "limitations": "One long batch per checkpoint; different RNG/backends and EOS occupancy; not accuracy or end-to-end validation",
+  "cases": {
+    "base": [
+      {
+        "batch": 1,
+        "max_new_tokens": 2048,
+        "output_tokens": 2048,
+        "wall_seconds_including_prefill": 7.77071,
+        "prefill_seconds_including_first_sample": 0.0603773,
+        "aggregate_output_tps_including_prefill": 263.554,
+        "model_load_seconds": 1.25347,
+        "flash_attention": true,
+        "kv_dtype": "BF16",
+        "sequences": [
+          {
+            "slot": 0,
+            "prompt_tokens": 100,
+            "output_tokens": 2048,
+            "finish_reason": "length"
+          }
+        ]
+      },
+      {
+        "batch": 4,
+        "max_new_tokens": 4096,
+        "output_tokens": 16286,
+        "wall_seconds_including_prefill": 28.2604,
+        "prefill_seconds_including_first_sample": 0.0434119,
+        "aggregate_output_tps_including_prefill": 576.283,
+        "model_load_seconds": 1.25347,
+        "flash_attention": true,
+        "kv_dtype": "BF16",
+        "sequences": [
+          {
+            "slot": 0,
+            "prompt_tokens": 100,
+            "output_tokens": 4096,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 1,
+            "prompt_tokens": 63,
+            "output_tokens": 4096,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 2,
+            "prompt_tokens": 82,
+            "output_tokens": 4096,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 3,
+            "prompt_tokens": 80,
+            "output_tokens": 3998,
+            "finish_reason": "stop"
+          }
+        ]
+      },
+      {
+        "batch": 8,
+        "max_new_tokens": 4096,
+        "output_tokens": 32768,
+        "wall_seconds_including_prefill": 34.0653,
+        "prefill_seconds_including_first_sample": 0.0788515,
+        "aggregate_output_tps_including_prefill": 961.917,
+        "model_load_seconds": 1.25347,
+        "flash_attention": true,
+        "kv_dtype": "BF16",
+        "sequences": [
+          {
+            "slot": 0,
+            "prompt_tokens": 100,
+            "output_tokens": 4096,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 1,
+            "prompt_tokens": 63,
+            "output_tokens": 4096,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 2,
+            "prompt_tokens": 82,
+            "output_tokens": 4096,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 3,
+            "prompt_tokens": 80,
+            "output_tokens": 4096,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 4,
+            "prompt_tokens": 109,
+            "output_tokens": 4096,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 5,
+            "prompt_tokens": 136,
+            "output_tokens": 4096,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 6,
+            "prompt_tokens": 75,
+            "output_tokens": 4096,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 7,
+            "prompt_tokens": 109,
+            "output_tokens": 4096,
+            "finish_reason": "length"
+          }
+        ]
+      },
+      {
+        "batch": 4,
+        "max_new_tokens": 32768,
+        "output_tokens": 105890,
+        "wall_seconds_including_prefill": 338.636,
+        "prefill_seconds_including_first_sample": 0.0432227,
+        "aggregate_output_tps_including_prefill": 312.695,
+        "model_load_seconds": 1.25347,
+        "flash_attention": true,
+        "kv_dtype": "BF16",
+        "sequences": [
+          {
+            "slot": 0,
+            "prompt_tokens": 100,
+            "output_tokens": 32768,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 1,
+            "prompt_tokens": 63,
+            "output_tokens": 32768,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 2,
+            "prompt_tokens": 82,
+            "output_tokens": 7586,
+            "finish_reason": "stop"
+          },
+          {
+            "slot": 3,
+            "prompt_tokens": 80,
+            "output_tokens": 32768,
+            "finish_reason": "length"
+          }
+        ]
+      }
+    ],
+    "edited": [
+      {
+        "batch": 1,
+        "max_new_tokens": 2048,
+        "output_tokens": 2048,
+        "wall_seconds_including_prefill": 7.92906,
+        "prefill_seconds_including_first_sample": 0.0699686,
+        "aggregate_output_tps_including_prefill": 258.29,
+        "model_load_seconds": 1.42728,
+        "flash_attention": true,
+        "kv_dtype": "BF16",
+        "sequences": [
+          {
+            "slot": 0,
+            "prompt_tokens": 100,
+            "output_tokens": 2048,
+            "finish_reason": "length"
+          }
+        ]
+      },
+      {
+        "batch": 4,
+        "max_new_tokens": 4096,
+        "output_tokens": 14164,
+        "wall_seconds_including_prefill": 34.8736,
+        "prefill_seconds_including_first_sample": 0.0431127,
+        "aggregate_output_tps_including_prefill": 406.153,
+        "model_load_seconds": 1.42728,
+        "flash_attention": true,
+        "kv_dtype": "BF16",
+        "sequences": [
+          {
+            "slot": 0,
+            "prompt_tokens": 100,
+            "output_tokens": 4096,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 1,
+            "prompt_tokens": 63,
+            "output_tokens": 4096,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 2,
+            "prompt_tokens": 82,
+            "output_tokens": 1876,
+            "finish_reason": "stop"
+          },
+          {
+            "slot": 3,
+            "prompt_tokens": 80,
+            "output_tokens": 4096,
+            "finish_reason": "length"
+          }
+        ]
+      },
+      {
+        "batch": 8,
+        "max_new_tokens": 4096,
+        "output_tokens": 27855,
+        "wall_seconds_including_prefill": 46.1119,
+        "prefill_seconds_including_first_sample": 0.0792888,
+        "aggregate_output_tps_including_prefill": 604.073,
+        "model_load_seconds": 1.42728,
+        "flash_attention": true,
+        "kv_dtype": "BF16",
+        "sequences": [
+          {
+            "slot": 0,
+            "prompt_tokens": 100,
+            "output_tokens": 4096,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 1,
+            "prompt_tokens": 63,
+            "output_tokens": 4096,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 2,
+            "prompt_tokens": 82,
+            "output_tokens": 4080,
+            "finish_reason": "stop"
+          },
+          {
+            "slot": 3,
+            "prompt_tokens": 80,
+            "output_tokens": 4096,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 4,
+            "prompt_tokens": 109,
+            "output_tokens": 4096,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 5,
+            "prompt_tokens": 136,
+            "output_tokens": 1369,
+            "finish_reason": "stop"
+          },
+          {
+            "slot": 6,
+            "prompt_tokens": 75,
+            "output_tokens": 4096,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 7,
+            "prompt_tokens": 109,
+            "output_tokens": 1926,
+            "finish_reason": "stop"
+          }
+        ]
+      },
+      {
+        "batch": 4,
+        "max_new_tokens": 32768,
+        "output_tokens": 85139,
+        "wall_seconds_including_prefill": 249.615,
+        "prefill_seconds_including_first_sample": 0.0432326,
+        "aggregate_output_tps_including_prefill": 341.082,
+        "model_load_seconds": 1.42728,
+        "flash_attention": true,
+        "kv_dtype": "BF16",
+        "sequences": [
+          {
+            "slot": 0,
+            "prompt_tokens": 100,
+            "output_tokens": 1073,
+            "finish_reason": "stop"
+          },
+          {
+            "slot": 1,
+            "prompt_tokens": 63,
+            "output_tokens": 32768,
+            "finish_reason": "length"
+          },
+          {
+            "slot": 2,
+            "prompt_tokens": 82,
+            "output_tokens": 18530,
+            "finish_reason": "stop"
+          },
+          {
+            "slot": 3,
+            "prompt_tokens": 80,
+            "output_tokens": 32768,
+            "finish_reason": "length"
+          }
+        ]
+      }
+    ]
+  },
+  "long_rates": {
+    "base": 312.69563779397345,
+    "edited": 341.08126514832844
+  },
+  "workloads": {
+    "discovery": {
+      "output_tokens": {
+        "base": 87823584,
+        "edited": 57644704
+      },
+      "generation_hours_per_model": {
+        "base": 78.01656643535745,
+        "edited": 46.9460489740307
+      },
+      "egpu_generation_hours": 124.96261540938815,
+      "mlx_generation_hours": 113.53714208233781
+    },
+    "math500": {
+      "output_tokens": {
+        "base": 61736869,
+        "edited": 44074295
+      },
+      "generation_hours_per_model": {
+        "base": 54.842882998824784,
+        "edited": 35.89426032209093
+      },
+      "egpu_generation_hours": 90.73714332091572,
+      "mlx_generation_hours": 83.24502851265673
+    },
+    "gsm8k": {
+      "output_tokens": {
+        "base": 77263469,
+        "edited": 31638577
+      },
+      "generation_hours_per_model": {
+        "base": 68.63567037146515,
+        "edited": 25.76656799748059
+      },
+      "egpu_generation_hours": 94.40223836894575,
+      "mlx_generation_hours": 81.45300762214336
+    },
+    "evaluation_math_gsm": {
+      "output_tokens": {
+        "base": 139000338,
+        "edited": 75712872
+      },
+      "generation_hours_per_model": {
+        "base": 123.47855337028993,
+        "edited": 61.66082831957152
+      },
+      "egpu_generation_hours": 185.13938168986147,
+      "mlx_generation_hours": 164.69803613480013
+    },
+    "discovery_plus_math_gsm": {
+      "output_tokens": {
+        "base": 226823922,
+        "edited": 133357576
+      },
+      "generation_hours_per_model": {
+        "base": 201.4951198056474,
+        "edited": 108.60687729360222
+      },
+      "egpu_generation_hours": 310.1019970992496,
+      "mlx_generation_hours": 278.2351782171379
+    }
+  },
+  "sha256": {
+    "inference_bench": "ba7d8c4510e715b6264c310b2dde448d1be9848485ca1012d513334161c3dcb9",
+    "hardware/qwen35-base-bf16.gguf": "8aa52a9d0e5c517ac42a2a20741bdd0c830f3e3883d9c796393dc50fa7224a02",
+    "hardware/qwen35-edited-bf16.gguf": "d1517c7652506c118998ebf73cbf7b915a10ce0e1f97c076f59e64b4a5150dc4"
+  }
+}
