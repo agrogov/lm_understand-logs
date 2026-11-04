@@ -20,5 +20,6 @@ RUN uv pip sync --python /opt/venv/bin/python /opt/requirements.lock \
     && uv pip check --python /opt/venv/bin/python
 WORKDIR /workspace
 COPY reproduction/qwen35/reproduce.py /opt/reproduce.py
+COPY reproduction/qwen35/benchmark_cuda.py /opt/benchmark_cuda.py
 ENTRYPOINT ["/opt/venv/bin/python", "/opt/reproduce.py"]
 CMD ["--help"]
