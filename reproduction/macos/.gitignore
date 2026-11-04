@@ -1,0 +1,5 @@
+.venv/
+.cache/
+.python/
+artifacts/
+__pycache__/
